@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -64,7 +63,6 @@ class _OnBoardingState extends State<OnBoarding> {
                   padding: const EdgeInsets.symmetric(horizontal: 120),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    //crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -84,7 +82,6 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(child: 
                 selectedIndex == 0
