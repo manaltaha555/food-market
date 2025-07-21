@@ -48,9 +48,13 @@ class _OnBoardingState extends State<OnBoarding> {
         body: Column(
           children: [
             Expanded(
-              child: Image.asset(
-                "assets/images/${selectedIndex == 4 ? "onboarding2" : "onboarding"}.png",
-                fit: BoxFit.cover,
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 70.0),
+                child: Image.asset(
+                  "assets/images/${selectedIndex == 4 ? "onboarding2" : "onboarding"}.png",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(
