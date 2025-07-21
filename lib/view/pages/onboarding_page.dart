@@ -37,6 +37,7 @@ class _OnBoardingState extends State<OnBoarding> {
     return Container(
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
+        color: Colors.white,
         image: DecorationImage(
           image: AssetImage("assets/images/Pattern.png"),
           fit: BoxFit.cover,
@@ -90,7 +91,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         icon: Icon(Icons.arrow_back_rounded),
                         onPressed: () {
                           pageController.previousPage(
-                            duration: Duration(seconds: 1),
+                            duration: Duration(milliseconds: 500),
                             curve: Curves.linear,
                           );
                         },
@@ -105,7 +106,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       activeDotColor: Color(0xffD61355),
                       dotHeight: 16,
                       dotWidth: 16,
-                      type: WormType.thinUnderground,
+                      type: WormType.normal,
                     ),
                   ),
                 ),
@@ -114,7 +115,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     icon: Icon(Icons.arrow_forward),
                     onPressed: () {
                       pageController.nextPage(
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 500),
                         curve: Curves.linear,
                       );
                     },
