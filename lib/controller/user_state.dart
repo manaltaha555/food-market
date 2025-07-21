@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum UserState { onBoarding, onReg, onHome }
@@ -8,30 +7,25 @@ enum UserState { onBoarding, onReg, onHome }
 //get state
 
 class States {
-    static UserState currentState = UserState.onBoarding;
-    late final SharedPreferences prefs;
+  static UserState _currentState = UserState.onBoarding;
 
-
-void checkState(){
-  switch(currentState) {
-    case UserState.onBoarding:
-    //save 0
-    saveState(0);
-    case UserState.onReg:
-    //save1
-      saveState(1);
-    case UserState.onHome:
-      //save2
-      saveState(2);
+  static UserState getState() {
+    return _currentState;
   }
-}
 
-void saveState(int i)async{
-    await prefs.setInt('state', i);
-    currentState = UserState.values[i];
-}
+  static void updateState(UserState userState) {
+    _currentState = userState;
+    //store
+    saveUserState();
+  }
 
-Future<int?> getState() async{
-  return prefs.getInt('state');
-}
+  static Future<void> saveUserState() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('state', _currentState.index);
+  }
+
+  static Future<void> storeUserState() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    _currentState = UserState.values[prefs.getInt('state') ?? 0];
+  }
 }

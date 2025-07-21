@@ -30,7 +30,7 @@ class _OnBoardingState extends State<OnBoarding> {
     {
       "title": "Good food at a cheap price",
       "body": "You can eat at expensive restaurants with affordable price",
-    },
+    }, //3
   ];
   @override
   Widget build(BuildContext context) {
@@ -59,6 +59,7 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
             Expanded(
               child: PageView.builder(
+                itemCount: content.length,
                 controller: pageController,
                 physics: NeverScrollableScrollPhysics(),
                 onPageChanged: (value) => setState(() {
@@ -87,42 +88,73 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(child: 
-                selectedIndex == 0
-                    ? Text("Skip")
-                    : IconButton(
-                        icon: Icon(Icons.arrow_back_rounded),
-                        onPressed: () {
-                          pageController.previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.linear,
-                          );
-                        },
+                Expanded(
+                  child: Row(
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 250),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                        child: selectedIndex == 0
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text("Skip"),
+                              )
+                            : IconButton(
+                                icon: Icon(Icons.arrow_back_rounded),
+                                onPressed: () {
+                                  pageController.previousPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.linear,
+                                  );
+                                },
+                              ),
                       ),
+                    ],
+                  ),
                 ),
                 Expanded(
-                  child: SmoothPageIndicator(
-                    controller: pageController,
-                    count: content.length,
-                    effect: const WormEffect(
-                      dotColor: Colors.grey,
-                      activeDotColor: Color(0xffD61355),
-                      dotHeight: 16,
-                      dotWidth: 16,
-                      type: WormType.normal,
+                  child: Center(
+                    child: SmoothPageIndicator(
+                      controller: pageController,
+                      count: content.length,
+                      effect: const WormEffect(
+                        dotColor: Colors.grey,
+                        activeDotColor: Color(0xffD61355),
+                        dotHeight: 16,
+                        dotWidth: 16,
+                        type: WormType.normal,
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_forward),
-                    onPressed: () {
-                      pageController.nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.linear,
-                      );
-                    },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          if (selectedIndex == 3) {
+                            setState(() {
+                              
+                            });
+                          } else {
+                            pageController.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.linear,
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],
