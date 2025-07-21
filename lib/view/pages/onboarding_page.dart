@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -38,6 +37,7 @@ class _OnBoardingState extends State<OnBoarding> {
     return Container(
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
+        color: Colors.white,
         image: DecorationImage(
           image: AssetImage("assets/images/Pattern.png"),
           fit: BoxFit.cover,
@@ -48,9 +48,13 @@ class _OnBoardingState extends State<OnBoarding> {
         body: Column(
           children: [
             Expanded(
-              child: Image.asset(
-                "assets/images/${selectedIndex == 4 ? "onboarding2" : "onboarding"}.png",
-                fit: BoxFit.cover,
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 70.0),
+                child: Image.asset(
+                  "assets/images/${selectedIndex == 4 ? "onboarding2" : "onboarding"}.png",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(
@@ -61,10 +65,9 @@ class _OnBoardingState extends State<OnBoarding> {
                   selectedIndex = value;
                 }),
                 itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 120),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    //crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -84,7 +87,6 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(child: 
                 selectedIndex == 0
@@ -93,7 +95,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         icon: Icon(Icons.arrow_back_rounded),
                         onPressed: () {
                           pageController.previousPage(
-                            duration: Duration(seconds: 1),
+                            duration: Duration(milliseconds: 500),
                             curve: Curves.linear,
                           );
                         },
@@ -108,7 +110,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       activeDotColor: Color(0xffD61355),
                       dotHeight: 16,
                       dotWidth: 16,
-                      type: WormType.thinUnderground,
+                      type: WormType.normal,
                     ),
                   ),
                 ),
@@ -117,7 +119,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     icon: Icon(Icons.arrow_forward),
                     onPressed: () {
                       pageController.nextPage(
-                        duration: Duration(seconds: 1),
+                        duration: Duration(milliseconds: 500),
                         curve: Curves.linear,
                       );
                     },
