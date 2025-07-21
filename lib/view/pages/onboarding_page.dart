@@ -61,7 +61,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   selectedIndex = value;
                 }),
                 itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 120),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
