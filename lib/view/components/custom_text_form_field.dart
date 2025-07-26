@@ -4,16 +4,16 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final String? Function(String?) validator;
-  bool? isObsecure;
-  final Icon? suffixIcon;
+  final bool isObsecure;
+  final IconButton? suffixIcon;
 
-  CustomTextFormField({
+  const CustomTextFormField({
     super.key,
     required this.controller,
     required this.validator,
     this.suffixIcon,
+    required this.isObsecure,   
     this.keyboardType = TextInputType.text,
-    this.isObsecure = false,
   });
 
   @override
@@ -26,7 +26,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return TextFormField(
       controller: widget.controller,
       keyboardType: widget.keyboardType,
-      obscureText: widget.isObsecure!,
+      obscureText: widget.isObsecure,
       validator: widget.validator,
       style: TextStyle(fontSize: 14, color: Color(0XFF3B3B3B)),
       decoration: InputDecoration(
@@ -78,14 +78,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             Radius.circular(15),
           ), // Border radius
         ),
-        suffixIcon: (widget.suffixIcon != null)? IconButton(
-          onPressed: () {
-            setState(() {
-              widget.isObsecure = !widget.isObsecure!;
-            });
-          },
-          icon: widget.suffixIcon!,
-        ): null
+        suffixIcon: (widget.suffixIcon != null)? widget.suffixIcon! : null
       ),
     );
   }

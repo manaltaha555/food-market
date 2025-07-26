@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_market/controller/user_state.dart';
 import 'package:food_market/view/components/custom_elevated_button.dart';
 import 'package:food_market/view/pages/login_page.dart';
+import 'package:food_market/view/pages/signup_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -237,7 +238,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.all(
-                                                Radius.circular(20),
+                                              Radius.circular(20),
                                             ),
                                           ),
                                           child: Column(
@@ -248,10 +249,32 @@ class _OnBoardingState extends State<OnBoarding> {
                                                   vertical: 20,
                                                 ),
                                                 child: Row(
-                                                  children: [Icon(Icons.add)],
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      height: 10,
+                                                      width: 60,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                              Radius.circular(
+                                                                20,
+                                                              ),
+                                                            ),
+                                                        color: Color(
+                                                          0xffFFDFDF,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                               TabBar(
+                                                dividerColor: Colors.transparent,
+                                                indicatorColor: Color(0xffD61355),
+                                                labelColor: Color(0XFFD61355),
+                                                labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                                unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                                                 tabs: [
                                                   Tab(text: "Create Account"),
                                                   Tab(text: "Login"),
@@ -260,7 +283,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                               Expanded(
                                                 child: TabBarView(
                                                   children: [
-                                                    LogInPage(
+                                                    SignupPage(
                                                       controller:
                                                           scrollController,
                                                     ),
