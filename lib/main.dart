@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_market/controller/user_state.dart';
 import 'package:food_market/view/pages/onboarding_page.dart';
 
-void main() async {
-  await States.storeUserState();
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  //await States.storeUserState();
   runApp(const MyApp());
 }
 
