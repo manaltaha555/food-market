@@ -13,10 +13,10 @@ class States {
 
   static Future<void> updateState(UserState userState) async {
     _currentState = userState;
-    await saveUserState();
+    await _saveUserState();
   }
 
-  static Future<void> saveUserState() async =>
+  static Future<void> _saveUserState() async =>
       await SharedPreferences.getInstance().then(
         (value) async => await value.setInt('state', _currentState.index),
       );
