@@ -9,23 +9,20 @@ enum UserState { onBoarding, onReg, onHome }
 class States {
   static UserState _currentState = UserState.onBoarding;
 
-  static UserState getState() {
-    return _currentState;
-  }
+  static UserState getState() => _currentState;
 
-  static void updateState(UserState userState) {
+  static Future<void> updateState(UserState userState) async {
     _currentState = userState;
-    //store
-    saveUserState();
+    await saveUserState();
   }
 
-  static Future<void> saveUserState() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('state', _currentState.index);
-  }
+  static Future<void> saveUserState() async =>
+      await SharedPreferences.getInstance().then(
+        (value) async => await value.setInt('state', _currentState.index),
+      );
 
-  static Future<void> storeUserState() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _currentState = UserState.values[prefs.getInt('state') ?? 0];
-  }
+  static Future<void> storeUserState() async =>
+      await SharedPreferences.getInstance().then(
+        (value) => _currentState = UserState.values[value.getInt('state') ?? 0],
+      );
 }
