@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_market/controller/user_state.dart';
-import 'package:food_market/view/components/custom_bottom_sheet.dart';
 import 'package:food_market/view/components/custom_elevated_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -114,6 +113,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           children: [
                             Expanded(
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   AnimatedSwitcher(
                                     duration: const Duration(milliseconds: 250),
@@ -128,21 +128,16 @@ class _OnBoardingState extends State<OnBoarding> {
                                           );
                                         },
                                     child: selectedIndex == 0
-                                        ? Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                            ),
-                                            child: InkWell(
-                                              child: Text("Skip"),
-                                              onTap: () {
-                                                setState(() {
-                                                  States.updateState(
-                                                    UserState.onReg,
-                                                  );
-                                                });
-                                              },
-                                            ),
-                                          )
+                                        ? InkWell(
+                                          child: Text("Skip"),
+                                          onTap: () {
+                                            setState(() {
+                                              States.updateState(
+                                                UserState.onReg,
+                                              );
+                                            });
+                                          },
+                                        )
                                         : IconButton(
                                             icon: Icon(
                                               Icons.arrow_back_rounded,
@@ -152,7 +147,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                                 duration: Duration(
                                                   milliseconds: 500,
                                                 ),
-                                                curve: Curves.linear,
+                                                curve: Curves.fastOutSlowIn,
                                               );
                                             },
                                           ),
@@ -161,6 +156,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               ),
                             ),
                             Expanded(
+                              flex: 2,
                               child: Center(
                                 child: SmoothPageIndicator(
                                   controller: pageController,
@@ -177,7 +173,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             ),
                             Expanded(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   IconButton(
                                     icon: Icon(Icons.arrow_forward),
@@ -189,7 +185,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                       } else {
                                         pageController.nextPage(
                                           duration: Duration(milliseconds: 500),
-                                          curve: Curves.linear,
+                                          curve: Curves.fastOutSlowIn,
                                         );
                                       }
                                     },
@@ -221,25 +217,30 @@ class _OnBoardingState extends State<OnBoarding> {
                               horizontal: 100,
                             ),
                             child: CustomElevatedButton(
-                              onTap: () {
-                                _scaffoldKey.currentState!.showBottomSheet(
-                                  (context) => Container(
-                                    height:
-                                        MediaQuery.of(context).size.height *
-                                        0.75,
-                                    color: Colors.white,
-                                    child: CustomBottomSheet(),
-                                  ),
-                                );
-                              },
+                              onTap: () async => await showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) => DraggableScrollableSheet(
+                                  expand: false,
+                                  maxChildSize: 0.8,
+                                  minChildSize: 0.2,
+                                  initialChildSize: 0.2,
+                                  builder: (context, scrollController) =>
+                                      Column(children: []),
+                                ),
+                              ),
                               colors: [Color(0XFFD61355), Color(0XFFFF0000)],
                               verticalPadding: 20,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              child: Column(
                                 children: [
-                                  Text(
-                                    "Next",
-                                    style: TextStyle(color: Colors.white),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Next",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

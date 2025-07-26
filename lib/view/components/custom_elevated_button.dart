@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     super.key,
-    required this.child,
-    required this.onTap,
     required this.verticalPadding,
-    this.colors,
+    required this.onTap,
     this.color,
+    this.colors,
+    required this.child,
   });
   final double verticalPadding;
-  final List<Color>? colors ;
   final void Function() onTap;
-  final Widget child;
   final Color? color;
+  final List<Color>? colors;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,9 @@ class CustomElevatedButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: verticalPadding),
         decoration: BoxDecoration(
-          gradient: (colors != null)? LinearGradient(
-            colors: colors!,
-          ): null,
-          color: (color != null)? color! : null,
           borderRadius: BorderRadius.all(Radius.circular(15)),
+          color: color,
+          gradient: colors == null ? null : LinearGradient(colors: colors!),
         ),
         child: child,
       ),
