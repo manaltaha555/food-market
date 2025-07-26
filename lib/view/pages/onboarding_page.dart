@@ -58,23 +58,15 @@ class _OnBoardingState extends State<OnBoarding> {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.only(top: 70.0),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 500),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                        return FadeTransition(opacity: animation, child: child);
-                      },
-                  child: States.getState() == UserState.onBoarding
-                      ? Image.asset(
-                          key: ValueKey("onboarding1"),
-                          "assets/images/onboarding.png",
-                          fit: BoxFit.cover,
-                        )
-                      : Image.asset(
-                          key: ValueKey("onboarding2"),
-                          "assets/images/onboarding2.png",
-                          fit: BoxFit.cover,
-                        ),
+                child: AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/${States.getState() == UserState.onBoarding ? "onboarding" : "onboarding2"}.png",
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -230,14 +222,15 @@ class _OnBoardingState extends State<OnBoarding> {
                             ),
                             child: CustomElevatedButton(
                               onTap: () {
-                                _scaffoldKey.currentState!
-                                    .showBottomSheet(
-                                      (context) => Container(
-                                        height: MediaQuery.of(context).size.height * 0.75,
-                                        color: Colors.white,
-                                        child: CustomBottomSheet()
-                                      ),
-                                    );
+                                _scaffoldKey.currentState!.showBottomSheet(
+                                  (context) => Container(
+                                    height:
+                                        MediaQuery.of(context).size.height *
+                                        0.75,
+                                    color: Colors.white,
+                                    child: CustomBottomSheet(),
+                                  ),
+                                );
                               },
                               colors: [Color(0XFFD61355), Color(0XFFFF0000)],
                               verticalPadding: 20,
