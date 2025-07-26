@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_market/controller/user_state.dart';
 import 'package:food_market/view/components/custom_elevated_button.dart';
+import 'package:food_market/view/pages/login_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -35,8 +36,13 @@ class _OnBoardingState extends State<OnBoarding> {
     },
   ];
 
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+   //TabController tabController = TabController(length:2 , vsync: this);
 
+@override
+  void initState() {
+    
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +56,6 @@ class _OnBoardingState extends State<OnBoarding> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        key: _scaffoldKey,
         body: Column(
           children: [
             Expanded(
@@ -129,15 +134,15 @@ class _OnBoardingState extends State<OnBoarding> {
                                         },
                                     child: selectedIndex == 0
                                         ? InkWell(
-                                          child: Text("Skip"),
-                                          onTap: () {
-                                            setState(() {
-                                              States.updateState(
-                                                UserState.onReg,
-                                              );
-                                            });
-                                          },
-                                        )
+                                            child: Text("Skip"),
+                                            onTap: () {
+                                              setState(() {
+                                                States.updateState(
+                                                  UserState.onReg,
+                                                );
+                                              });
+                                            },
+                                          )
                                         : IconButton(
                                             icon: Icon(
                                               Icons.arrow_back_rounded,
@@ -226,7 +231,17 @@ class _OnBoardingState extends State<OnBoarding> {
                                   minChildSize: 0.2,
                                   initialChildSize: 0.2,
                                   builder: (context, scrollController) =>
-                                      Column(children: []),
+                                      Column(
+                                        children: [
+                                          TabBar(
+                                            
+                                            tabs: [Tab(text: "Create Account"), Tab(text: "Login")],
+                                          ),
+                                          Expanded(
+                                            child: TabBarView(children: [LogInPage(), LogInPage()]),
+                                          ),
+                                        ],
+                                      ),
                                 ),
                               ),
                               colors: [Color(0XFFD61355), Color(0XFFFF0000)],

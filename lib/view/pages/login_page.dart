@@ -20,9 +20,7 @@ class _LoginState extends State<LogInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Form(
@@ -155,7 +153,6 @@ class _LoginState extends State<LogInPage> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
