@@ -36,13 +36,13 @@ class _OnBoardingState extends State<OnBoarding> {
     },
   ];
 
-   //TabController tabController = TabController(length:2 , vsync: this);
+  //TabController tabController = TabController(length:2 , vsync: this);
 
-@override
+  @override
   void initState() {
-    
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -229,18 +229,51 @@ class _OnBoardingState extends State<OnBoarding> {
                                   expand: false,
                                   maxChildSize: 0.8,
                                   minChildSize: 0.2,
-                                  initialChildSize: 0.2,
+                                  initialChildSize: 0.3,
                                   builder: (context, scrollController) =>
-                                      Column(
-                                        children: [
-                                          TabBar(
-                                            
-                                            tabs: [Tab(text: "Create Account"), Tab(text: "Login")],
+                                      DefaultTabController(
+                                        length: 2,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20),
+                                            ),
                                           ),
-                                          Expanded(
-                                            child: TabBarView(children: [LogInPage(), LogInPage()]),
+                                          child: Column(
+                                            children: [
+                                              SingleChildScrollView(
+                                                controller: scrollController,
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical: 20,
+                                                ),
+                                                child: Row(
+                                                  children: [Icon(Icons.add)],
+                                                ),
+                                              ),
+                                              TabBar(
+                                                tabs: [
+                                                  Tab(text: "Create Account"),
+                                                  Tab(text: "Login"),
+                                                ],
+                                              ),
+                                              Expanded(
+                                                child: TabBarView(
+                                                  children: [
+                                                    LogInPage(
+                                                      controller:
+                                                          scrollController,
+                                                    ),
+                                                    LogInPage(
+                                                      controller:
+                                                          scrollController,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
                                 ),
                               ),

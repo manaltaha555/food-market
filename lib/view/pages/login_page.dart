@@ -5,7 +5,8 @@ import 'package:food_market/view/components/custom_text_form_field.dart'
 import 'package:food_market/view/pages/home_page.dart';
 
 class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+  const LogInPage({super.key, required this.controller});
+  final ScrollController controller;
 
   @override
   State<LogInPage> createState() => _LoginState();
@@ -21,8 +22,9 @@ class _LoginState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller:widget.controller ,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           child: Form(
             key: _formKey,
             child: Column(
@@ -127,26 +129,32 @@ class _LoginState extends State<LogInPage> {
                     ),
                   ),
                 ),
-                CustomElevatedButton(
-                  onTap: () {},
-                  color: Colors.grey.shade300,
-                  verticalPadding: 16,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: Image.asset('assets/icons/google_icon.png'),
-                      ),
-                      Text(
-                        "Login with Google",
-                        style: TextStyle(
-                          fontSize: 16, // Adjust text size
-                          fontWeight: FontWeight.w600, // Adjust text weight
-                          color: Colors.black, // Text color
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 10,
+                  ),
+                  child: CustomElevatedButton(
+                    onTap: () {},
+                    color: Colors.grey.shade300,
+                    verticalPadding: 16,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Image.asset('assets/icons/google_icon.png'),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "Login with Google",
+                          style: TextStyle(
+                            fontSize: 16, // Adjust text size
+                            fontWeight: FontWeight.w600, // Adjust text weight
+                            color: Colors.black, // Text color
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

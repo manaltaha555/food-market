@@ -39,7 +39,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
               ],
             ),
           ),
-          Expanded(child: LogInPage())
+          //Expanded(child: LogInPage())
         ],
       ),
     );
