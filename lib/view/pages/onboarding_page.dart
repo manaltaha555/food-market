@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_market/controller/user_state.dart';
+import 'package:food_market/view/components/custom_bottom_sheet.dart';
 import 'package:food_market/view/components/custom_elevated_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -32,8 +33,11 @@ class _OnBoardingState extends State<OnBoarding> {
     {
       "title": "Good food at a cheap price",
       "body": "You can eat at expensive restaurants with affordable price",
-    }, //4
+    },
   ];
+
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,6 +51,7 @@ class _OnBoardingState extends State<OnBoarding> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        key: _scaffoldKey,
         body: Column(
           children: [
             Expanded(
@@ -114,7 +119,6 @@ class _OnBoardingState extends State<OnBoarding> {
                           ),
                         ),
                         Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
                               child: Row(
@@ -221,11 +225,23 @@ class _OnBoardingState extends State<OnBoarding> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 100),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 100,
+                            ),
                             child: CustomElevatedButton(
-                              onTap: () {},
+                              onTap: () {
+                                _scaffoldKey.currentState!
+                                    .showBottomSheet(
+                                      (context) => Container(
+                                        height: MediaQuery.of(context).size.height * 0.75,
+                                        color: Colors.white,
+                                        child: CustomBottomSheet()
+                                      ),
+                                    );
+                              },
                               colors: [Color(0XFFD61355), Color(0XFFFF0000)],
-                              verticalPadding: 20, child: Row(
+                              verticalPadding: 20,
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(

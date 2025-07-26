@@ -5,13 +5,15 @@ class CustomElevatedButton extends StatelessWidget {
     super.key,
     required this.child,
     required this.onTap,
-    required this.colors,
     required this.verticalPadding,
+    this.colors,
+    this.color,
   });
   final double verticalPadding;
-  final List<Color> colors ;
+  final List<Color>? colors ;
   final void Function() onTap;
   final Widget child;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,10 @@ class CustomElevatedButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: verticalPadding),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: colors,
-          ),
+          gradient: (colors != null)? LinearGradient(
+            colors: colors!,
+          ): null,
+          color: (color != null)? color! : null,
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
         child: child,
